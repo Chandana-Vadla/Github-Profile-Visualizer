@@ -1,0 +1,55 @@
+/* Page wrapper */
+.analysis-container {
+  max-width: 1100px;
+  margin: 48px auto;
+  padding: 0 16px;
+}
+
+/* Page heading */
+.analysis-title {
+  font-size: 28px;
+  margin-bottom: 32px;
+}
+
+/* Chart card */
+.analysis-card {
+  background-color: #1e293b;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 32px;
+}
+
+/* Card title */
+.analysis-card-title {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+/* Two-column layout (desktop) */
+.analysis-row {
+  display: flex;
+  gap: 32px;
+}
+
+/* Each column */
+.analysis-col {
+  flex: 1;
+}
+
+/* Legend text spacing */
+.chart-legend {
+  margin-top: 16px;
+}
+
+/* -------- Mobile -------- */
+@media (max-width: 768px) {
+  .analysis-title {
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+
+  .analysis-row {
+    flex-direction: column;
+    gap: 24px;
+  }
+}

@@ -1,0 +1,63 @@
+/* Header container */
+.header {
+  height: 64px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* App title */
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Desktop nav links */
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+/* Each link */
+.nav-link {
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+/* Active route */
+.nav-link.active {
+  color: #3b82f6;
+}
+
+/* Hamburger icon (hidden on desktop) */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+/* -------- Mobile -------- */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  /* When menu is open */
+  .nav-links.mobile-show {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background-color: #0b132b;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+  }
+}

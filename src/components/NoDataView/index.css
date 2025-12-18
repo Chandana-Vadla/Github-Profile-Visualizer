@@ -1,0 +1,32 @@
+.no-data-container {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 16px;
+}
+
+.no-data-image {
+  width: 260px;
+  margin-bottom: 24px;
+}
+
+.no-data-title {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.no-data-text {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.go-home-button {
+  margin-top: 24px;
+  padding: 10px 24px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border-radius: 6px;
+}
