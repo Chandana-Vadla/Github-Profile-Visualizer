@@ -1,59 +1,30 @@
-/* Whole page container */
 .home-container {
-  min-height: calc(100vh - 64px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 48px;
+  padding: 24px;
 }
 
-/* Search box wrapper */
-.search-box {
+.search-container {
   display: flex;
   align-items: center;
+  max-width: 400px;
+  margin-bottom: 32px;
 }
 
-/* Input field */
-.search-input {
-  width: 420px;
-  height: 48px;
-  padding: 0 16px;
-  background-color: #1e293b;
-  border: 1px solid #334155;
+.search-container input {
+  flex-grow: 1;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.search-container button {
+  background-color: #3b82f6;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
   color: #ffffff;
-  border-radius: 6px 0 0 6px;
-  outline: none;
 }
 
-/* Search button */
-.search-button {
-  height: 48px;
-  width: 56px;
-  background-color: #475569;
-  border-radius: 0 6px 6px 0;
-}
-
-/* Error text under input */
-.search-error {
-  margin-top: 8px;
-  font-size: 12px;
-  color: #ef4444;
-}
-
-/* Home illustration */
 .home-image {
-  width: 300px;
-  margin-top: 60px;
-}
-
-/* -------- Mobile -------- */
-@media (max-width: 768px) {
-  .search-input {
-    width: 220px;
-  }
-
-  .home-image {
-    width: 220px;
-    margin-top: 40px;
-  }
+  width: 100%;
+  max-width: 600px;
+  margin-top: 40px;
 }

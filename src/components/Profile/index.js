@@ -1,4 +1,9 @@
 /* eslint-disable camelcase */
+
+import {RiBuildingLine} from 'react-icons/ri'
+import {IoMdLink} from 'react-icons/io'
+import {IoLocationOutline} from 'react-icons/io5'
+
 import './index.css'
 
 const Profile = ({profileData}) => {
@@ -7,49 +12,57 @@ const Profile = ({profileData}) => {
     name,
     login,
     bio,
+    company,
+    blog,
+    location,
     followers,
     following,
     public_repos,
-    company,
-    location,
-    blog,
   } = profileData
 
   return (
-    <div className="profile-card">
-      <img src={avatar_url} alt={name} className="profile-avatar" />
+    <div className="profile-container">
+      <img src={avatar_url} alt={name} className="profile-image" />
 
-      <h1 className="profile-name">{name}</h1>
-      <p className="profile-username">@{login}</p>
+      <h1>{name}</h1>
+      <p>@{login}</p>
+      {bio && <p>{bio}</p>}
 
-      {bio && <p className="profile-bio">{bio}</p>}
+      <ul className="profile-stats">
+        <li>
+          <p>{followers}</p>
+          <p>Followers</p>
+        </li>
+        <li>
+          <p>{following}</p>
+          <p>Following</p>
+        </li>
+        <li>
+          <p>{public_repos}</p>
+          <p>Public Repos</p>
+        </li>
+      </ul>
 
-      <div className="profile-stats">
-        <div className="stat-item">
-          <p className="stat-value">{followers}</p>
-          <p className="stat-label">Followers</p>
-        </div>
-
-        <div className="stat-item">
-          <p className="stat-value">{following}</p>
-          <p className="stat-label">Following</p>
-        </div>
-
-        <div className="stat-item">
-          <p className="stat-value">{public_repos}</p>
-          <p className="stat-label">Public Repos</p>
-        </div>
-      </div>
-
-      <div className="profile-extra">
-        {company && <p>{company}</p>}
-        {location && <p>{location}</p>}
-        {blog && (
-          <a href={blog} target="_blank" rel="noreferrer">
-            {blog}
-          </a>
+      <ul className="profile-details">
+        {company && (
+          <li>
+            <RiBuildingLine />
+            <p>{company}</p>
+          </li>
         )}
-      </div>
+        {blog && (
+          <li>
+            <IoMdLink />
+            <a href={blog}>{blog}</a>
+          </li>
+        )}
+        {location && (
+          <li>
+            <IoLocationOutline />
+            <p>{location}</p>
+          </li>
+        )}
+      </ul>
     </div>
   )
 }

@@ -1,14 +1,8 @@
-import './index.css'
-
 const NotFound = () => (
-  <div className="not-found-container">
-    <img
-      src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1765716309/Group_7519_qtksdp.png"
-      alt="not found"
-      className="not-found-image"
-    />
-    <h1>Page Not Found</h1>
-  </div>
+  <img
+    src="https://assets.ccbp.in/frontend/react-js/page-not-found.png"
+    alt="not found"
+  />
 )
 
 export default NotFound

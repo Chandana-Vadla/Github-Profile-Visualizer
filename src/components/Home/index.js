@@ -1,6 +1,5 @@
-import {useState, useEffect, useContext} from 'react'
+import {useState, useContext} from 'react'
 import {HiOutlineSearch} from 'react-icons/hi'
-import GITHUB_API_KEY from '../../utils/config'
 
 import GithubContext from '../../context/GithubContext'
 import Profile from '../Profile'
@@ -17,18 +16,17 @@ const apiStatusConstants = {
 }
 
 const Home = () => {
-  const {username, setUsername} = useContext(GithubContext)
+  const {setUsername} = useContext(GithubContext)
 
   const [searchInput, setSearchInput] = useState('')
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
   const [profileData, setProfileData] = useState(null)
-  const [showError, setShowError] = useState(false)
 
-  // ✅ MOVE THIS ABOVE useEffect
-  const fetchProfile = async () => {
+  const fetchProfileDetails = async username => {
     setApiStatus(apiStatusConstants.loading)
 
-    const apiUrl = `https://apis2.ccbp.in/gpv/profile-details/${username}?api_key=${GITHUB_API_KEY}`
+    const apiUrl = `https://apis2.ccbp.in/gpv/profile-details/${username}?api_key=${process.env.REACT_APP_GITHUB_API_KEY}`
+
     const response = await fetch(apiUrl)
 
     if (response.ok) {
@@ -40,19 +38,10 @@ const Home = () => {
     }
   }
 
-  useEffect(() => {
-    if (username !== '') {
-      fetchProfile()
-    }
-    // eslint-disable-next-line
-  }, [username])
-
   const onClickSearch = () => {
-    if (searchInput === '') {
-      setShowError(true)
-    } else {
-      setShowError(false)
+    if (searchInput !== '') {
       setUsername(searchInput)
+      fetchProfileDetails(searchInput)
     }
   }
 
@@ -60,14 +49,17 @@ const Home = () => {
     switch (apiStatus) {
       case apiStatusConstants.loading:
         return <LoaderView />
+
       case apiStatusConstants.success:
         return <Profile profileData={profileData} />
+
       case apiStatusConstants.failure:
-        return <FailureView onRetry={fetchProfile} />
+        return <FailureView onRetry={() => fetchProfileDetails(searchInput)} />
+
       default:
         return (
           <img
-            src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1765713178/Group_2_rd6reu.png"
+            src="https://assets.ccbp.in/frontend/react-js/github-profile-visualizer-home.png"
             alt="github profile visualizer home page"
             className="home-image"
           />
@@ -78,32 +70,20 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="search-container">
-        <label className="search-label">
-          Search Github Username
-          <div className="search-box">
-            <input
-              type="search"
-              className="search-input"
-              placeholder="Enter Github Username"
-              value={searchInput}
-              onChange={e => setSearchInput(e.target.value)}
-            />
-
-            <button
-              type="button"
-              className="search-button"
-              data-testid="searchButton"
-              aria-label="Search Github Username"
-              onClick={onClickSearch}
-            >
-              <HiOutlineSearch size={20} />
-            </button>
-          </div>
-        </label>
-
-        {showError && (
-          <p className="search-error">Enter the valid github username</p>
-        )}
+        <input
+          type="search"
+          placeholder="Enter Github Username"
+          value={searchInput}
+          onChange={event => setSearchInput(event.target.value)}
+        />
+        <button
+          type="button"
+          data-testid="searchButton"
+          aria-label="Search"
+          onClick={onClickSearch}
+        >
+          <HiOutlineSearch />
+        </button>
       </div>
 
       {renderHomeView()}

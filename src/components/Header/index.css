@@ -1,63 +1,27 @@
-/* Header container */
-.header {
-  height: 64px;
-  padding: 0 32px;
+header {
+  background-color: #0f172a;
+  padding: 16px;
+}
+
+nav {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
-/* App title */
-.logo {
-  font-size: 20px;
-  font-weight: 600;
+nav h1 {
   color: #ffffff;
+  margin: 0;
 }
 
-/* Desktop nav links */
-.nav-links {
+nav ul {
+  list-style-type: none;
   display: flex;
-  gap: 24px;
+  gap: 20px;
+  padding-left: 0;
 }
 
-/* Each link */
-.nav-link {
-  color: #cbd5e1;
-  font-size: 14px;
-}
-
-/* Active route */
-.nav-link.active {
-  color: #3b82f6;
-}
-
-/* Hamburger icon (hidden on desktop) */
-.hamburger {
-  display: none;
-  font-size: 24px;
+nav ul li a {
   color: #ffffff;
-}
-
-/* -------- Mobile -------- */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  /* When menu is open */
-  .nav-links.mobile-show {
-    position: absolute;
-    top: 64px;
-    left: 0;
-    width: 100%;
-    background-color: #0b132b;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 20px;
-  }
+  text-decoration: none;
 }

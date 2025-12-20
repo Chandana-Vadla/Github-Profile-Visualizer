@@ -1,13 +1,14 @@
-import React from 'react'
-import {BrowserRouter} from 'react-router-dom'
 import ReactDOM from 'react-dom'
+import {BrowserRouter} from 'react-router-dom'
+
 import App from './App'
+import GithubProvider from './context/GithubProvider'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
+  <BrowserRouter>
+    <GithubProvider>
       <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+    </GithubProvider>
+  </BrowserRouter>,
   document.getElementById('root'),
 )
