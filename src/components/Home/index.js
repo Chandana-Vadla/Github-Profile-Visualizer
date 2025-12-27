@@ -59,7 +59,7 @@ const Home = () => {
       default:
         return (
           <img
-            src="https://assets.ccbp.in/frontend/react-js/github-profile-visualizer-home.png"
+            src="https://ik.imagekit.io/chandy/Group%202.png?updatedAt=1757601787533"
             alt="github profile visualizer home page"
             className="home-image"
           />
