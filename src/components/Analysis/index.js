@@ -40,13 +40,12 @@ const Analysis = () => {
     if (username !== '') {
       fetchAnalysis()
     }
-    // eslint-disable-next-line
   }, [])
 
   if (username === '') {
     return (
       <img
-        src="https://assets.ccbp.in/frontend/react-js/no-analysis.png"
+        src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766917027/box_rix5ib.png"
         alt="empty analysis"
       />
     )

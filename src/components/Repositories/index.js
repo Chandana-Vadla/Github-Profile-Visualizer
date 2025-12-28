@@ -44,7 +44,7 @@ const Repositories = () => {
   if (username === '') {
     return (
       <img
-        src="https://assets.ccbp.in/frontend/react-js/no-data-found.png"
+        src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766917027/box_rix5ib.png"
         alt="empty repositories"
       />
     )
@@ -61,7 +61,7 @@ const Repositories = () => {
   if (repos.length === 0) {
     return (
       <img
-        src="https://assets.ccbp.in/frontend/react-js/no-repositories.png"
+        src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766915191/no_repos_m3heul.png"
         alt="no repositories"
       />
     )

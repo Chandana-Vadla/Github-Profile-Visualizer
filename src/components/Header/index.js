@@ -4,7 +4,7 @@ import './index.css'
 const Header = () => (
   <header>
     <nav>
-      <Link to="/">
+      <Link className="heading" to="/">
         <h1>GitHub Profile Visualizer</h1>
       </Link>
 

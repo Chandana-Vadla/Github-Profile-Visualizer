@@ -25,3 +25,8 @@ nav ul li a {
   color: #ffffff;
   text-decoration: none;
 }
+
+.heading {
+  text-decoration: none;
+  font-size: 14px;
+}
