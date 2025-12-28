@@ -43,10 +43,20 @@ const Repositories = () => {
 
   if (username === '') {
     return (
-      <img
-        src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766917027/box_rix5ib.png"
-        alt="empty repositories"
-      />
+      <>
+        <img
+          src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766917027/box_rix5ib.png"
+          alt="empty analysis"
+        />
+        <p>No Data Found</p>
+        <p>
+          GitHub Username is empty, please provide a valid username for
+          Repositories
+        </p>
+        <Link to="/">
+          <button type="button">Go to Home</button>
+        </Link>
+      </>
     )
   }
 

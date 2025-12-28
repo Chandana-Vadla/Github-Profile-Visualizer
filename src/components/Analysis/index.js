@@ -1,4 +1,6 @@
 import {useEffect, useState, useContext} from 'react'
+import {Link} from 'react-router-dom'
+
 import {
   LineChart,
   Line,
@@ -44,10 +46,19 @@ const Analysis = () => {
 
   if (username === '') {
     return (
-      <img
-        src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766917027/box_rix5ib.png"
-        alt="empty analysis"
-      />
+      <>
+        <img
+          src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766917027/box_rix5ib.png"
+          alt="empty analysis"
+        />
+        <p>No Data Found</p>
+        <p>
+          GitHub Username is empty, please provide a valid username for analysis
+        </p>
+        <Link to="/">
+          <button type="button">Go to Home</button>
+        </Link>
+      </>
     )
   }
 
