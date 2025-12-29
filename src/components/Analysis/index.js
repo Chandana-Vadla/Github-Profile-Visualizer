@@ -12,7 +12,7 @@ import {
   Pie,
   Cell,
 } from 'recharts'
-
+import GITHUB_API_KEY from '../../utils/config'
 import GithubContext from '../../context/GithubContext'
 import LoaderView from '../LoaderView'
 import FailureView from '../FailureView'
@@ -26,7 +26,7 @@ const Analysis = () => {
   const fetchAnalysis = async () => {
     setApiStatus('LOADING')
 
-    const apiUrl = `https://apis2.ccbp.in/gpv/profile-summary/${username}?api_key=${process.env.REACT_APP_GITHUB_API_KEY}`
+    const apiUrl = `https://apis2.ccbp.in/gpv/profile-summary/${username}?api_key=${GITHUB_API_KEY}`
     const response = await fetch(apiUrl)
 
     if (response.ok) {

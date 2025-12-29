@@ -5,6 +5,7 @@ import GithubContext from '../../context/GithubContext'
 import Profile from '../Profile'
 import LoaderView from '../LoaderView'
 import FailureView from '../FailureView'
+import GITHUB_API_KEY from '../../utils/config'
 
 import './index.css'
 
@@ -24,7 +25,7 @@ const Home = () => {
 
   const fetchProfileDetails = async username => {
     setApiStatus(apiStatusConstants.loading)
-    const apiUrl = `https://apis2.ccbp.in/gpv/profile-details/${username}?api_key=${process.env.REACT_APP_GITHUB_API_KEY}`
+    const apiUrl = `https://apis2.ccbp.in/gpv/profile-details/${username}?api_key=${GITHUB_API_KEY}`
 
     const response = await fetch(apiUrl)
 

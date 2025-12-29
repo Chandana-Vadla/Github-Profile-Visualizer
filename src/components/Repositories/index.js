@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import GithubContext from '../../context/GithubContext'
 import LoaderView from '../LoaderView'
 import FailureView from '../FailureView'
+import GITHUB_API_KEY from '../../utils/config'
 
 import './index.css'
 
@@ -22,7 +23,7 @@ const Repositories = () => {
   const fetchRepos = async () => {
     setApiStatus(apiStatusConstants.loading)
 
-    const apiUrl = `https://apis2.ccbp.in/gpv/repos/${username}?api_key=${process.env.REACT_APP_GITHUB_API_KEY}`
+    const apiUrl = `https://apis2.ccbp.in/gpv/repos/${username}?api_key=${GITHUB_API_KEY}`
     const response = await fetch(apiUrl)
 
     if (response.ok) {

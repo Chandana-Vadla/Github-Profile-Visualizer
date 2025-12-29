@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom'
 import GithubContext from '../../context/GithubContext'
 import LoaderView from '../LoaderView'
 import FailureView from '../FailureView'
+import GITHUB_API_KEY from '../../utils/config'
 
 const RepositoryItemDetails = () => {
   const {username} = useContext(GithubContext)
@@ -15,7 +16,7 @@ const RepositoryItemDetails = () => {
   const fetchRepoDetails = async () => {
     setApiStatus('LOADING')
 
-    const apiUrl = `https://apis2.ccbp.in/gpv/specific-repo/${username}/${repoName}?api_key=${process.env.REACT_APP_GITHUB_API_KEY}`
+    const apiUrl = `https://apis2.ccbp.in/gpv/specific-repo/${username}/${repoName}?api_key=${GITHUB_API_KEY}`
 
     const response = await fetch(apiUrl)
 

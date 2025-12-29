@@ -1,3 +1,3 @@
-const GITHUB_API_KEY = process.env.REACT_APP_GITHUB_API_KEY
+const GITHUB_API_KEY = '<api_key>'
 
 export default GITHUB_API_KEY
