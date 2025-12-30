@@ -6,6 +6,7 @@ import Repositories from './components/Repositories'
 import RepositoryItemDetails from './components/RepositoryItemDetails'
 import Analysis from './components/Analysis'
 import NotFound from './components/NotFound'
+import './App.css'
 
 const App = () => (
   <>
