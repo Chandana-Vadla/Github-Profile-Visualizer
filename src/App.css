@@ -2,12 +2,29 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
   margin: 0;
+  background-color: #0f172a;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+
+/* App wrapper */
+.app-container {
+  min-height: 100vh;
   background-color: #0f172a;
+}
+
+/* Hide header ONLY on small devices for Home route */
+@media (max-width: 767px) {
+  .hide-header-mobile header {
+    display: none;
+  }
 }
