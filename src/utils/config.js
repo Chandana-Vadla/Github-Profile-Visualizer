@@ -1,3 +1,3 @@
-const GITHUB_API_KEY = '<api_key>'
+const GITHUB_API_KEY = ''
 
 export default GITHUB_API_KEY

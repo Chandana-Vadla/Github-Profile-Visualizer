@@ -19,10 +19,12 @@ const Profile = ({profileData}) => {
     following,
     public_repos,
   } = profileData
+  const avatarUrl = avatar_url
+  const publicRepos = public_repos
 
   return (
     <div className="profile-container">
-      <img src={avatar_url} alt={name} className="profile-image" />
+      <img src={avatarUrl} alt={name} className="profile-image" />
 
       <h1>{name}</h1>
       <p>@{login}</p>
@@ -31,35 +33,35 @@ const Profile = ({profileData}) => {
       <ul className="profile-stats">
         <li>
           <p>{followers}</p>
-          <p>Followers</p>
+          <p>FOLLOWERS</p>
         </li>
         <li>
           <p>{following}</p>
-          <p>Following</p>
+          <p>FOLLOWING</p>
         </li>
         <li>
-          <p>{public_repos}</p>
-          <p>Public Repos</p>
+          <p>{publicRepos}</p>
+          <p>PUBLIC REPOS</p>
         </li>
       </ul>
 
       <ul className="profile-details">
         {company && (
           <li>
-            <RiBuildingLine />
-            <p>{company}</p>
-          </li>
-        )}
-        {blog && (
-          <li>
-            <IoMdLink />
-            <a href={blog}>{blog}</a>
+            <p>Company</p>
+            <div>
+              <RiBuildingLine />
+              <p>{company}</p>
+            </div>
           </li>
         )}
         {location && (
           <li>
-            <IoLocationOutline />
-            <p>{location}</p>
+            <p>Company</p>
+            <div>
+              <IoLocationOutline />
+              <p>{location}</p>
+            </div>
           </li>
         )}
       </ul>
