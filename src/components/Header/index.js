@@ -1,26 +1,49 @@
+import {useState} from 'react'
 import {Link} from 'react-router-dom'
+import {GiHamburgerMenu} from 'react-icons/gi'
 import './index.css'
 
-const Header = () => (
-  <header>
-    <nav>
-      <Link className="heading" to="/">
-        <h1>GitHub Profile Visualizer</h1>
-      </Link>
+const Header = () => {
+  const [showMenu, setShowMenu] = useState(false)
 
-      <ul>
+  return (
+    <header>
+      <div className="header-top">
+        <Link className="heading" to="/">
+          <h1>GitHub Profile Visualizer</h1>
+        </Link>
+
+        {/* Hamburger icon – visible only on small devices */}
+        <button
+          type="button"
+          className="hamburger-btn"
+          onClick={() => setShowMenu(prev => !prev)}
+          aria-label="menu"
+        >
+          <GiHamburgerMenu size={24} />
+        </button>
+      </div>
+
+      {/* Nav items – ALWAYS in DOM */}
+      <ul className={`nav-items ${showMenu ? 'show' : ''}`}>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/" onClick={() => setShowMenu(false)}>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/repositories">Repositories</Link>
+          <Link to="/repositories" onClick={() => setShowMenu(false)}>
+            Repositories
+          </Link>
         </li>
         <li>
-          <Link to="/analysis">Analysis</Link>
+          <Link to="/analysis" onClick={() => setShowMenu(false)}>
+            Analysis
+          </Link>
         </li>
       </ul>
-    </nav>
-  </header>
-)
+    </header>
+  )
+}
 
 export default Header

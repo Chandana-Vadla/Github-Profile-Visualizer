@@ -3,36 +3,58 @@ header {
   padding: 16px;
 }
 
-nav {
+.header-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-nav h1 {
-  color: #ffffff;
-  margin: 0;
+.heading {
+  text-decoration: none;
 }
 
-nav ul {
+header h1 {
+  color: #ffffff;
+  margin: 0;
+  font-size: 18px;
+}
+
+/* Hamburger button */
+.hamburger-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: none;
+}
+
+/* Nav items (desktop default) */
+.nav-items {
   list-style-type: none;
   display: flex;
   gap: 20px;
   padding-left: 0;
 }
 
-nav ul li a {
+.nav-items li a {
   color: #ffffff;
   text-decoration: none;
 }
 
-.heading {
-  text-decoration: none;
-  font-size: 14px;
-}
-
+/* ---------- SMALL DEVICES ---------- */
 @media (max-width: 767px) {
-  header {
+  .hamburger-btn {
+    display: block;
+  }
+
+  .nav-items {
     display: none;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .nav-items.show {
+    display: flex;
   }
 }
