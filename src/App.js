@@ -1,4 +1,5 @@
 import {Switch, Route, useLocation} from 'react-router-dom'
+import {useState} from 'react'
 
 import Header from './components/Header'
 import Home from './components/Home'
@@ -11,20 +12,26 @@ import './App.css'
 
 const App = () => {
   const location = useLocation()
+  const [isProfileVisible, setIsProfileVisible] = useState(false)
 
-  // Hide header ONLY on Home route (small devices via CSS)
-  const hideHeaderOnMobileHome = location.pathname === '/'
+  const hideHeaderOnMobile = location.pathname === '/' && !isProfileVisible
 
   return (
     <div
       className={`app-container ${
-        hideHeaderOnMobileHome ? 'hide-header-mobile' : ''
+        hideHeaderOnMobile ? 'hide-header-mobile' : ''
       }`}
     >
       <Header />
 
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <Home onProfileLoaded={() => setIsProfileVisible(true)} />
+          )}
+        />
         <Route exact path="/repositories" component={Repositories} />
         <Route
           exact

@@ -1,60 +1,69 @@
-import {useState, useContext} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import {HiOutlineSearch} from 'react-icons/hi'
 
 import GithubContext from '../../context/GithubContext'
-import Profile from '../Profile'
 import LoaderView from '../LoaderView'
 import FailureView from '../FailureView'
+import Profile from '../Profile'
 import GITHUB_API_KEY from '../../utils/config'
 
 import './index.css'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
-  loading: 'LOADING',
+  inProgress: 'IN_PROGRESS',
   success: 'SUCCESS',
   failure: 'FAILURE',
 }
 
-const Home = () => {
-  const {setUsername} = useContext(GithubContext)
-
-  const [searchInput, setSearchInput] = useState('')
+const Home = ({onProfileLoaded}) => {
+  const [inputValue, setInputValue] = useState('')
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
   const [profileData, setProfileData] = useState(null)
 
-  const fetchProfileDetails = async username => {
-    setApiStatus(apiStatusConstants.loading)
-    const apiUrl = `https://apis2.ccbp.in/gpv/profile-details/${username}?api_key=${GITHUB_API_KEY}`
+  const {setUsername} = useContext(GithubContext)
 
-    const response = await fetch(apiUrl)
+  const fetchProfile = async () => {
+    if (inputValue.trim() === '') {
+      return
+    }
 
-    if (response.ok) {
-      const data = await response.json()
-      setProfileData(data)
-      setApiStatus(apiStatusConstants.success)
-    } else {
+    setUsername(inputValue) // ✅ store username globally
+    setApiStatus(apiStatusConstants.inProgress)
+
+    const apiUrl = `https://apis2.ccbp.in/gpv/profile-details/${inputValue}?api_key=${GITHUB_API_KEY}`
+
+    try {
+      const response = await fetch(apiUrl)
+      if (response.ok) {
+        const data = await response.json()
+        setProfileData(data)
+        setApiStatus(apiStatusConstants.success)
+      } else {
+        setApiStatus(apiStatusConstants.failure)
+      }
+    } catch (error) {
       setApiStatus(apiStatusConstants.failure)
     }
   }
 
-  const onClickSearch = () => {
-    if (searchInput !== '') {
-      setUsername(searchInput)
-      fetchProfileDetails(searchInput)
+  // ✅ Notify App.js when profile is successfully loaded
+  useEffect(() => {
+    if (apiStatus === apiStatusConstants.success) {
+      onProfileLoaded()
     }
-  }
+  }, [apiStatus, onProfileLoaded])
 
-  const renderHomeView = () => {
+  const renderHomeContent = () => {
     switch (apiStatus) {
-      case apiStatusConstants.loading:
+      case apiStatusConstants.inProgress:
         return <LoaderView />
 
       case apiStatusConstants.success:
         return <Profile profileData={profileData} />
 
       case apiStatusConstants.failure:
-        return <FailureView onRetry={() => fetchProfileDetails(searchInput)} />
+        return <FailureView onRetry={fetchProfile} />
 
       default:
         return (
@@ -70,23 +79,30 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="search-container">
+        {/* Accessibility label (hidden visually) */}
+        <label htmlFor="searchInput" className="visually-hidden">
+          GitHub Username
+        </label>
+
         <input
+          id="searchInput"
           type="search"
-          placeholder="Enter Github Username"
-          value={searchInput}
-          onChange={event => setSearchInput(event.target.value)}
+          placeholder="Enter GitHub username"
+          value={inputValue}
+          onChange={event => setInputValue(event.target.value)}
         />
+
         <button
           type="button"
           data-testid="searchButton"
+          onClick={fetchProfile}
           aria-label="Search"
-          onClick={onClickSearch}
         >
           <HiOutlineSearch />
         </button>
       </div>
 
-      {renderHomeView()}
+      {renderHomeContent()}
     </div>
   )
 }

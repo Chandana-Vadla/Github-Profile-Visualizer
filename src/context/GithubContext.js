@@ -1,6 +1,6 @@
-import React from 'react'
+import {createContext} from 'react'
 
-const GithubContext = React.createContext({
+const GithubContext = createContext({
   username: '',
   setUsername: () => {},
 })

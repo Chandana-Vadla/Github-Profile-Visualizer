@@ -39,7 +39,6 @@ const Repositories = () => {
     if (username !== '') {
       fetchRepos()
     }
-    // eslint-disable-next-line
   }, [])
 
   if (username === '') {
