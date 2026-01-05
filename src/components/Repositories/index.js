@@ -35,18 +35,20 @@ const Repositories = () => {
     }
   }
 
+  // ✅ FIX: depend on username
   useEffect(() => {
     if (username !== '') {
       fetchRepos()
     }
-  }, [])
+  }, [username])
 
+  // ✅ No username case
   if (username === '') {
     return (
       <>
         <img
           src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766917027/box_rix5ib.png"
-          alt="empty analysis"
+          alt="empty repositories"
         />
         <p>No Data Found</p>
         <p>
@@ -78,16 +80,19 @@ const Repositories = () => {
   }
 
   return (
-    <ul className="repo-list">
-      {repos.map(repo => (
-        <li key={repo.id}>
-          <Link to={`/repositories/${repo.name}`} data-testid="repoItem">
-            <h1>{repo.name}</h1>
+    <div className="repos-container">
+      <h1 className="title">Repositories</h1>
+      <ul className="repo-list">
+        {repos.map(repo => (
+          <li className="repo-container" key={repo.id}>
+            <Link to={`/repositories/${repo.name}`} data-testid="repoItem">
+              <h1 className="repo-name">{repo.name}</h1>
+            </Link>
             <p>{repo.description}</p>
-          </Link>
-        </li>
-      ))}
-    </ul>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
 

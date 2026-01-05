@@ -12,10 +12,17 @@ import {
   Pie,
   Cell,
 } from 'recharts'
+
 import GITHUB_API_KEY from '../../utils/config'
 import GithubContext from '../../context/GithubContext'
 import LoaderView from '../LoaderView'
 import FailureView from '../FailureView'
+
+const apiStatusConstants = {
+  loading: 'LOADING',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+}
 
 const Analysis = () => {
   const {username} = useContext(GithubContext)
@@ -24,7 +31,7 @@ const Analysis = () => {
   const [apiStatus, setApiStatus] = useState('')
 
   const fetchAnalysis = async () => {
-    setApiStatus('LOADING')
+    setApiStatus(apiStatusConstants.loading)
 
     const apiUrl = `https://apis2.ccbp.in/gpv/profile-summary/${username}?api_key=${GITHUB_API_KEY}`
     const response = await fetch(apiUrl)
@@ -32,17 +39,18 @@ const Analysis = () => {
     if (response.ok) {
       const data = await response.json()
       setAnalysisData(data)
-      setApiStatus('SUCCESS')
+      setApiStatus(apiStatusConstants.success)
     } else {
-      setApiStatus('FAILURE')
+      setApiStatus(apiStatusConstants.failure)
     }
   }
 
+  // ✅ FIX: depend on username
   useEffect(() => {
     if (username !== '') {
       fetchAnalysis()
     }
-  }, [])
+  }, [username])
 
   if (username === '') {
     return (
@@ -62,11 +70,11 @@ const Analysis = () => {
     )
   }
 
-  if (apiStatus === 'LOADING') {
+  if (apiStatus === apiStatusConstants.loading) {
     return <LoaderView />
   }
 
-  if (apiStatus === 'FAILURE') {
+  if (apiStatus === apiStatusConstants.failure) {
     return <FailureView onRetry={fetchAnalysis} />
   }
 
