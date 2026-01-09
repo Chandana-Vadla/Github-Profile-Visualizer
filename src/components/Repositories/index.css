@@ -1,29 +1,102 @@
-.repo-list {
-  list-style-type: none;
-  padding-left: 0;
+.repo-page {
+  padding: 20px;
 }
 
-.title {
+.repo-heading {
+  color: #fff;
   font-size: 24px;
-  font-weight: 700;
-  color: #f8fafc;
-  font-family: 'HK Grotesk';
-  line-height: 32px;
-  letter-spacing: 0%;
+  margin-bottom: 16px;
 }
 
-.repo-name {
-  font-size: 18px;
-  font-weight: 700;
+.repo-list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.repo-item {
+  background-color: #1e293b;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.repo-link {
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+
+.repo-title {
   color: #3b82f6;
-  font-family: 'HK Grotesk';
-  line-height: 24px;
-  letter-spacing: 0%;
+  margin-bottom: 8px;
+  font-size: 20px;
 }
 
-.repos-container {
-  padding: 34px;
+.repo-description {
+  font-size: 14px;
+  opacity: 0.9;
+  line-height: 20px;
+  margin-bottom: 12px;
 }
 
-.repo-container {
+.topics-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 12px;
+}
+
+.topic-tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.topic-tag:nth-child(1) {
+  background-color: #9333ea;
+}
+.topic-tag:nth-child(2) {
+  background-color: #059669;
+}
+.topic-tag:nth-child(3) {
+  background-color: #2563eb;
+}
+.topic-tag:nth-child(4) {
+  background-color: #be123c;
+}
+.topic-tag:nth-child(5) {
+  background-color: #ca8a04;
+}
+
+.repo-stats {
+  margin-top: 12px;
+  display: flex;
+  gap: 18px;
+  font-size: 14px;
+}
+
+.no-username-container {
+  text-align: center;
+  padding: 24px;
+}
+
+.empty-img {
+  width: 200px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .repo-page {
+    width: 80%;
+    margin: auto;
+  }
+
+  .repo-item {
+    padding: 24px;
+  }
 }

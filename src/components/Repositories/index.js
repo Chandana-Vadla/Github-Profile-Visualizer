@@ -35,30 +35,27 @@ const Repositories = () => {
     }
   }
 
-  // ✅ FIX: depend on username
   useEffect(() => {
     if (username !== '') {
       fetchRepos()
     }
+    // eslint-disable-next-line
   }, [username])
 
-  // ✅ No username case
   if (username === '') {
     return (
-      <>
+      <div className="no-username-container">
         <img
           src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766917027/box_rix5ib.png"
-          alt="empty repositories"
+          alt="no repositories"
+          className="empty-img"
         />
         <p>No Data Found</p>
-        <p>
-          GitHub Username is empty, please provide a valid username for
-          Repositories
-        </p>
+        <p>Please provide a valid GitHub username</p>
         <Link to="/">
           <button type="button">Go to Home</button>
         </Link>
-      </>
+      </div>
     )
   }
 
@@ -72,23 +69,42 @@ const Repositories = () => {
 
   if (repos.length === 0) {
     return (
-      <img
-        src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766915191/no_repos_m3heul.png"
-        alt="no repositories"
-      />
+      <div className="no-username-container">
+        <img
+          src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766915191/no_repos_m3heul.png"
+          alt="no repositories"
+          className="empty-img"
+        />
+        <p>No repositories found</p>
+      </div>
     )
   }
 
   return (
-    <div className="repos-container">
-      <h1 className="title">Repositories</h1>
+    <div className="repo-page">
+      <h1 className="repo-heading">Repositories</h1>
+
       <ul className="repo-list">
         {repos.map(repo => (
-          <li className="repo-container" key={repo.id}>
-            <Link to={`/repositories/${repo.name}`} data-testid="repoItem">
-              <h1 className="repo-name">{repo.name}</h1>
+          <li key={repo.id} className="repo-item">
+            <Link to={`/repositories/${repo.name}`} className="repo-link">
+              <h2 className="repo-title">{repo.name}</h2>
+              <p className="repo-description">{repo.description}</p>
+
+              <ul className="topics-list">
+                {repo.topics.map(topic => (
+                  <li key={topic} className="topic-tag">
+                    {topic}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="repo-stats">
+                <span>⭐ {repo.stargazers_count}</span>
+                <span>🔀 {repo.forks_count}</span>
+                <span>❗ {repo.open_issues_count}</span>
+              </div>
             </Link>
-            <p>{repo.description}</p>
           </li>
         ))}
       </ul>
