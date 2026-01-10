@@ -14,15 +14,20 @@ const App = () => {
   const location = useLocation()
   const [isProfileVisible, setIsProfileVisible] = useState(false)
 
-  const hideHeaderOnMobile = location.pathname === '/' && !isProfileVisible
+  // ❌ Hide header on Home (mobile) BEFORE user searches
+  const hideHeaderOnMobileHome = location.pathname === '/' && !isProfileVisible
+
+  // ❌ Hide header ALWAYS on NotFound
+  const hideHeaderOnNotFound =
+    location.pathname !== '/' &&
+    !['/', '/repositories', '/analysis'].includes(location.pathname) &&
+    !location.pathname.startsWith('/repositories/')
+
+  const hideHeader = hideHeaderOnMobileHome || hideHeaderOnNotFound
 
   return (
-    <div
-      className={`app-container ${
-        hideHeaderOnMobile ? 'hide-header-mobile' : ''
-      }`}
-    >
-      <Header />
+    <div className={`app-container ${hideHeader ? 'hide-header-mobile' : ''}`}>
+      {!hideHeader && <Header />}
 
       <Switch>
         <Route

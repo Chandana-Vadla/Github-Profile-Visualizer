@@ -22,9 +22,14 @@ body {
   background-color: #0f172a;
 }
 
-/* Hide header ONLY on small devices for Home route */
-@media (max-width: 767px) {
+/* Hide header on Home (mobile) + NotFound */
+.hide-header-mobile header {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  /* Show header on desktop always */
   .hide-header-mobile header {
-    display: none;
+    display: block;
   }
 }
