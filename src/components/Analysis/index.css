@@ -1,17 +1,15 @@
-/* Page wrapper */
 .analysis-container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 48px auto;
   padding: 0 16px;
 }
 
-/* Page heading */
 .analysis-title {
   font-size: 28px;
   margin-bottom: 32px;
+  color: #ffffff;
 }
 
-/* Chart card */
 .analysis-card {
   background-color: #1e293b;
   padding: 24px;
@@ -19,30 +17,41 @@
   margin-bottom: 32px;
 }
 
-/* Card title */
 .analysis-card-title {
   font-size: 18px;
   margin-bottom: 16px;
+  color: #ffffff;
 }
 
-/* Two-column layout (desktop) */
 .analysis-row {
   display: flex;
   gap: 32px;
 }
 
-/* Each column */
 .analysis-col {
   flex: 1;
 }
 
-/* Legend text spacing */
-.chart-legend {
-  margin-top: 16px;
+.empty-page {
+  text-align: center;
+  padding: 32px;
+  color: #ffffff;
 }
 
-/* -------- Mobile -------- */
+button {
+  padding: 8px 16px;
+  background-color: #2563eb;
+  border: none;
+  color: white;
+  border-radius: 6px;
+}
+
+/* Mobile */
 @media (max-width: 768px) {
+  .analysis-container {
+    margin: 16px 0;
+  }
+
   .analysis-title {
     font-size: 22px;
     margin-bottom: 24px;
@@ -51,5 +60,9 @@
   .analysis-row {
     flex-direction: column;
     gap: 24px;
+  }
+
+  .analysis-card {
+    padding: 16px;
   }
 }

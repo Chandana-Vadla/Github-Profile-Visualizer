@@ -20,15 +20,18 @@ const Home = ({onProfileLoaded}) => {
   const [inputValue, setInputValue] = useState('')
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
   const [profileData, setProfileData] = useState(null)
+  const [showErrorMessage, setShowErrorMessage] = useState(false)
 
   const {setUsername} = useContext(GithubContext)
 
   const fetchProfile = async () => {
     if (inputValue.trim() === '') {
+      setShowErrorMessage(true)
       return
     }
 
-    setUsername(inputValue) // ✅ store username globally
+    setShowErrorMessage(false)
+    setUsername(inputValue)
     setApiStatus(apiStatusConstants.inProgress)
 
     const apiUrl = `https://apis2.ccbp.in/gpv/profile-details/${inputValue}?api_key=${GITHUB_API_KEY}`
@@ -41,13 +44,14 @@ const Home = ({onProfileLoaded}) => {
         setApiStatus(apiStatusConstants.success)
       } else {
         setApiStatus(apiStatusConstants.failure)
+        setShowErrorMessage(true)
       }
     } catch (error) {
       setApiStatus(apiStatusConstants.failure)
+      setShowErrorMessage(true)
     }
   }
 
-  // ✅ Notify App.js when profile is successfully loaded
   useEffect(() => {
     if (apiStatus === apiStatusConstants.success) {
       onProfileLoaded()
@@ -79,7 +83,6 @@ const Home = ({onProfileLoaded}) => {
   return (
     <div className="home-container">
       <div className="search-container">
-        {/* Accessibility label (hidden visually) */}
         <label htmlFor="searchInput" className="visually-hidden">
           GitHub Username
         </label>
@@ -87,9 +90,13 @@ const Home = ({onProfileLoaded}) => {
         <input
           id="searchInput"
           type="search"
-          placeholder="Enter GitHub username"
+          placeholder="Enter github username"
           value={inputValue}
-          onChange={event => setInputValue(event.target.value)}
+          onChange={event => {
+            setInputValue(event.target.value)
+            setShowErrorMessage(false)
+          }}
+          className={showErrorMessage ? 'error-border' : ''}
         />
 
         <button
@@ -101,6 +108,10 @@ const Home = ({onProfileLoaded}) => {
           <HiOutlineSearch />
         </button>
       </div>
+
+      {showErrorMessage && (
+        <p className="error-message">Enter the valid github username</p>
+      )}
 
       {renderHomeContent()}
     </div>

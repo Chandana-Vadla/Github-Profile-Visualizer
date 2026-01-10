@@ -40,3 +40,14 @@
   white-space: nowrap;
   border: 0;
 }
+
+.error-message {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.error-border {
+  border: 2px solid #dc2626 !important;
+}

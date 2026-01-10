@@ -1,6 +1,5 @@
 import {useEffect, useState, useContext} from 'react'
 import {Link} from 'react-router-dom'
-
 import {
   LineChart,
   Line,
@@ -18,11 +17,15 @@ import GithubContext from '../../context/GithubContext'
 import LoaderView from '../LoaderView'
 import FailureView from '../FailureView'
 
+import './index.css'
+
 const apiStatusConstants = {
   loading: 'LOADING',
   success: 'SUCCESS',
   failure: 'FAILURE',
 }
+
+const COLORS = ['#22c55e', '#0ea5e9', '#fbbf24', '#ef4444', '#8b5cf6']
 
 const Analysis = () => {
   const {username} = useContext(GithubContext)
@@ -45,7 +48,6 @@ const Analysis = () => {
     }
   }
 
-  // ✅ FIX: depend on username
   useEffect(() => {
     if (username !== '') {
       fetchAnalysis()
@@ -54,7 +56,7 @@ const Analysis = () => {
 
   if (username === '') {
     return (
-      <>
+      <div className="empty-page">
         <img
           src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766917027/box_rix5ib.png"
           alt="empty analysis"
@@ -66,7 +68,7 @@ const Analysis = () => {
         <Link to="/">
           <button type="button">Go to Home</button>
         </Link>
-      </>
+      </div>
     )
   }
 
@@ -87,33 +89,110 @@ const Analysis = () => {
     commits: analysisData.quarterCommitCount[key],
   }))
 
-  const languageData = Object.keys(analysisData.langRepoCount).map(key => ({
+  const languageRepos = Object.keys(analysisData.langRepoCount).map(key => ({
     name: key,
     value: analysisData.langRepoCount[key],
   }))
 
+  const languageCommits = Object.keys(analysisData.langCommitCount).map(
+    key => ({
+      name: key,
+      value: analysisData.langCommitCount[key],
+    }),
+  )
+
+  const commitsPerRepo = Object.keys(analysisData.repoCommitCount).map(key => ({
+    name: key,
+    value: analysisData.repoCommitCount[key],
+  }))
+
   return (
-    <div>
-      <h1>Analysis</h1>
+    <div className="analysis-container">
+      <h1 className="analysis-title">Analysis</h1>
 
-      <h1>Commits Per Quarter</h1>
-      <LineChart width={800} height={300} data={quarterData}>
-        <XAxis dataKey="quarter" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line dataKey="commits" />
-      </LineChart>
+      {/* Commits Per Quarter */}
+      <div className="analysis-card">
+        <h1 className="analysis-card-title">Commits Per Quarter</h1>
+        <LineChart width={800} height={300} data={quarterData}>
+          <XAxis dataKey="quarter" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line dataKey="commits" stroke="#3b82f6" />
+        </LineChart>
+      </div>
 
-      <h1>Languages</h1>
-      <PieChart width={400} height={300}>
-        <Pie data={languageData} dataKey="value">
-          {languageData.map(item => (
-            <Cell key={item.name} />
-          ))}
-        </Pie>
-        <Legend />
-      </PieChart>
+      {/* TWO CARDS ROW */}
+      <div className="analysis-row">
+        {/* LANGUAGE PER REPO */}
+        <div className="analysis-card analysis-col">
+          <h1 className="analysis-card-title">Repos Per Language</h1>
+          <PieChart width={300} height={260}>
+            <Pie
+              data={languageRepos}
+              dataKey="value"
+              cx="50%"
+              cy="50%"
+              innerRadius={60}
+              outerRadius={100}
+            >
+              {languageRepos.map((_, idx) => (
+                <Cell
+                  key={languageRepos[idx].name}
+                  fill={COLORS[idx % COLORS.length]}
+                />
+              ))}
+            </Pie>
+            <Legend layout="vertical" align="right" verticalAlign="middle" />
+          </PieChart>
+        </div>
+
+        {/* LANGUAGE PER COMMITS */}
+        <div className="analysis-card analysis-col">
+          <h1 className="analysis-card-title">Commits Per Language</h1>
+          <PieChart width={300} height={260}>
+            <Pie
+              data={languageCommits}
+              dataKey="value"
+              cx="50%"
+              cy="50%"
+              innerRadius={60}
+              outerRadius={100}
+            >
+              {languageCommits.map((_, idx) => (
+                <Cell
+                  key={languageCommits[idx].name}
+                  fill={COLORS[idx % COLORS.length]}
+                />
+              ))}
+            </Pie>
+            <Legend layout="vertical" align="right" verticalAlign="middle" />
+          </PieChart>
+        </div>
+      </div>
+
+      {/* COMMITS PER REPO */}
+      <div className="analysis-card">
+        <h1 className="analysis-card-title">Commits Per Repo (Top 10)</h1>
+        <PieChart width={350} height={300}>
+          <Pie
+            data={commitsPerRepo}
+            dataKey="value"
+            cx="50%"
+            cy="50%"
+            innerRadius={60}
+            outerRadius={120}
+          >
+            {commitsPerRepo.map((_, idx) => (
+              <Cell
+                key={commitsPerRepo[idx].name}
+                fill={COLORS[idx % COLORS.length]}
+              />
+            ))}
+          </Pie>
+          <Legend />
+        </PieChart>
+      </div>
     </div>
   )
 }
