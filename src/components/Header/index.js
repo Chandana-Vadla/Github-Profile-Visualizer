@@ -22,26 +22,25 @@ const Header = () => {
         >
           <GiHamburgerMenu size={24} />
         </button>
+        {/* Nav items – ALWAYS in DOM */}
+        <ul className={`nav-items ${showMenu ? 'show' : ''}`}>
+          <li>
+            <Link to="/" onClick={() => setShowMenu(false)}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/repositories" onClick={() => setShowMenu(false)}>
+              Repositories
+            </Link>
+          </li>
+          <li>
+            <Link to="/analysis" onClick={() => setShowMenu(false)}>
+              Analysis
+            </Link>
+          </li>
+        </ul>
       </div>
-
-      {/* Nav items – ALWAYS in DOM */}
-      <ul className={`nav-items ${showMenu ? 'show' : ''}`}>
-        <li>
-          <Link to="/" onClick={() => setShowMenu(false)}>
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/repositories" onClick={() => setShowMenu(false)}>
-            Repositories
-          </Link>
-        </li>
-        <li>
-          <Link to="/analysis" onClick={() => setShowMenu(false)}>
-            Analysis
-          </Link>
-        </li>
-      </ul>
     </header>
   )
 }
