@@ -28,8 +28,8 @@ const Profile = ({profileData}) => {
 
       <h1>{name}</h1>
       <p>@{login}</p>
+      <h2>BIO</h2>
       {bio && <p>{bio}</p>}
-
       <ul className="profile-stats">
         <li>
           <p>{followers}</p>
@@ -57,10 +57,19 @@ const Profile = ({profileData}) => {
         )}
         {location && (
           <li>
-            <p>Company</p>
+            <p>Location</p>
             <div>
               <IoLocationOutline />
               <p>{location}</p>
+            </div>
+          </li>
+        )}
+        {blog && (
+          <li>
+            <p>Blog</p>
+            <div>
+              <IoMdLink />
+              <p>{blog}</p>
             </div>
           </li>
         )}

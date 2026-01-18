@@ -63,8 +63,10 @@ const Analysis = () => {
         />
         <p>No Data Found</p>
         <p>
-          GitHub Username is empty, please provide a valid username for analysis
+          GitHub username is empty, please provide a valid username for
+          Repositories
         </p>
+
         <Link to="/">
           <button type="button">Go to Home</button>
         </Link>
@@ -126,7 +128,7 @@ const Analysis = () => {
       <div className="analysis-row">
         {/* LANGUAGE PER REPO */}
         <div className="analysis-card analysis-col">
-          <h1 className="analysis-card-title">Repos Per Language</h1>
+          <h1 className="analysis-card-title">Language Per Repos</h1>
           <PieChart width={300} height={260}>
             <Pie
               data={languageRepos}
@@ -149,7 +151,7 @@ const Analysis = () => {
 
         {/* LANGUAGE PER COMMITS */}
         <div className="analysis-card analysis-col">
-          <h1 className="analysis-card-title">Commits Per Language</h1>
+          <h1 className="analysis-card-title">Language Per Commits</h1>
           <PieChart width={300} height={260}>
             <Pie
               data={languageCommits}
@@ -173,7 +175,7 @@ const Analysis = () => {
 
       {/* COMMITS PER REPO */}
       <div className="analysis-card">
-        <h1 className="analysis-card-title">Commits Per Repo (Top 10)</h1>
+        <h1 className="analysis-card-title">Commits Per Repo</h1>
         <PieChart width={350} height={300}>
           <Pie
             data={commitsPerRepo}

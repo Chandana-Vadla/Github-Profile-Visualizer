@@ -84,7 +84,7 @@ const RepositoryItemDetails = () => {
           </div>
 
           <div className="repo-stats-box">
-            <p className="box-title">Issues Count</p>
+            <h2 className="box-title">Issues Count</h2>
             <h3>{openIssuesCount}</h3>
           </div>
         </div>
