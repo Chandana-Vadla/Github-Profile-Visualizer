@@ -1,5 +1,4 @@
 import {useEffect, useState, useContext} from 'react'
-import {Link} from 'react-router-dom'
 import {
   LineChart,
   Line,
@@ -54,23 +53,22 @@ const Analysis = () => {
     }
   }, [username])
 
-  if (username === '') {
-    return (
-      <div className="empty-page">
-        <img
-          src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766917027/box_rix5ib.png"
-          alt="empty analysis"
-        />
-        <p>No Data Found</p>
-        <p>
-          GitHub username is empty, please provide a valid username for
-          Repositories
-        </p>
+  const isNoAnalysisData = data => {
+    const {
+      quarterCommitCount,
+      langRepoCount,
+      langCommitCount,
+      repoCommitCount,
+    } = data
 
-        <Link to="/">
-          <button type="button">Go to Home</button>
-        </Link>
-      </div>
+    const sumValues = obj =>
+      Object.values(obj || {}).reduce((acc, val) => acc + val, 0)
+
+    return (
+      sumValues(quarterCommitCount) === 0 &&
+      sumValues(langRepoCount) === 0 &&
+      sumValues(langCommitCount) === 0 &&
+      sumValues(repoCommitCount) === 0
     )
   }
 
@@ -84,6 +82,19 @@ const Analysis = () => {
 
   if (!analysisData) {
     return null
+  }
+
+  if (isNoAnalysisData(analysisData)) {
+    return (
+      <div className="no-analysis-container">
+        <img
+          src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766915191/no_repos_m3heul.png"
+          alt="no analysis"
+          className="no-analysis-image"
+        />
+        <h1 className="no-analysis-text">No Analysis Found!</h1>
+      </div>
+    )
   }
 
   const quarterData = Object.keys(analysisData.quarterCommitCount).map(key => ({
@@ -112,7 +123,6 @@ const Analysis = () => {
     <div className="analysis-container">
       <h1 className="analysis-title">Analysis</h1>
 
-      {/* Commits Per Quarter */}
       <div className="analysis-card">
         <h1 className="analysis-card-title">Commits Per Quarter</h1>
         <LineChart width={800} height={300} data={quarterData}>
@@ -124,9 +134,7 @@ const Analysis = () => {
         </LineChart>
       </div>
 
-      {/* TWO CARDS ROW */}
       <div className="analysis-row">
-        {/* LANGUAGE PER REPO */}
         <div className="analysis-card analysis-col">
           <h1 className="analysis-card-title">Language Per Repos</h1>
           <PieChart width={300} height={260}>
@@ -138,18 +146,14 @@ const Analysis = () => {
               innerRadius={60}
               outerRadius={100}
             >
-              {languageRepos.map((_, idx) => (
-                <Cell
-                  key={languageRepos[idx].name}
-                  fill={COLORS[idx % COLORS.length]}
-                />
+              {languageRepos.map((item, idx) => (
+                <Cell key={item.name} fill={COLORS[idx % COLORS.length]} />
               ))}
             </Pie>
             <Legend layout="vertical" align="right" verticalAlign="middle" />
           </PieChart>
         </div>
 
-        {/* LANGUAGE PER COMMITS */}
         <div className="analysis-card analysis-col">
           <h1 className="analysis-card-title">Language Per Commits</h1>
           <PieChart width={300} height={260}>
@@ -161,11 +165,8 @@ const Analysis = () => {
               innerRadius={60}
               outerRadius={100}
             >
-              {languageCommits.map((_, idx) => (
-                <Cell
-                  key={languageCommits[idx].name}
-                  fill={COLORS[idx % COLORS.length]}
-                />
+              {languageCommits.map((item, idx) => (
+                <Cell key={item.name} fill={COLORS[idx % COLORS.length]} />
               ))}
             </Pie>
             <Legend layout="vertical" align="right" verticalAlign="middle" />
@@ -173,7 +174,6 @@ const Analysis = () => {
         </div>
       </div>
 
-      {/* COMMITS PER REPO */}
       <div className="analysis-card">
         <h1 className="analysis-card-title">Commits Per Repo</h1>
         <PieChart width={350} height={300}>
@@ -185,11 +185,8 @@ const Analysis = () => {
             innerRadius={60}
             outerRadius={120}
           >
-            {commitsPerRepo.map((_, idx) => (
-              <Cell
-                key={commitsPerRepo[idx].name}
-                fill={COLORS[idx % COLORS.length]}
-              />
+            {commitsPerRepo.map((item, idx) => (
+              <Cell key={item.name} fill={COLORS[idx % COLORS.length]} />
             ))}
           </Pie>
           <Legend />
