@@ -16,20 +16,21 @@ body {
     sans-serif;
 }
 
-/* App wrapper */
 .app-container {
   min-height: 100vh;
   background-color: #0f172a;
 }
 
-/* Hide header on Home (mobile) + NotFound */
-.hide-header-mobile header {
-  display: none;
+/* Mobile: hide header when class present */
+@media (max-width: 767px) {
+  .hide-header-mobile header {
+    display: none;
+  }
 }
 
+/* Desktop: header always visible */
 @media (min-width: 768px) {
-  /* Show header on desktop always */
-  .hide-header-mobile header {
+  header {
     display: block;
   }
 }

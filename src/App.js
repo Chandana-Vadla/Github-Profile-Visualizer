@@ -14,22 +14,20 @@ const App = () => {
   const location = useLocation()
   const [isProfileVisible, setIsProfileVisible] = useState(false)
 
-  const isMobile = window.innerWidth <= 767
+  // Hide header on Home BEFORE search (CSS will handle mobile only)
+  const hideHeaderOnHome = location.pathname === '/' && !isProfileVisible
 
-  // Hide only on home, only on mobile, only before valid search
-  const hideHeaderOnHomeMobile =
-    isMobile && location.pathname === '/' && !isProfileVisible
-
-  // Hide header on NotFound always (mobile + desktop)
+  // Hide header on NotFound (all devices)
   const hideHeaderOnNotFound =
     !['/', '/repositories', '/analysis'].includes(location.pathname) &&
     !location.pathname.startsWith('/repositories/')
 
-  const hideHeader = hideHeaderOnHomeMobile || hideHeaderOnNotFound
+  const hideHeader = hideHeaderOnHome || hideHeaderOnNotFound
 
   return (
     <div className={`app-container ${hideHeader ? 'hide-header-mobile' : ''}`}>
-      {!hideHeader && <Header />}
+      {/* ✅ Header is ALWAYS rendered */}
+      <Header />
 
       <Switch>
         <Route
