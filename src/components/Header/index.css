@@ -3,6 +3,7 @@ header {
   padding: 16px;
 }
 
+/* Top row: logo + hamburger */
 .header-top {
   display: flex;
   justify-content: space-between;
@@ -28,12 +29,13 @@ header h1 {
   display: none;
 }
 
-/* Nav items (desktop default) */
+/* NAV ITEMS – DESKTOP */
 .nav-items {
   list-style-type: none;
   display: flex;
-  gap: 20px;
+  gap: 24px;
   padding-left: 0;
+  margin-top: 0;
 }
 
 .nav-items li a {
@@ -47,11 +49,12 @@ header h1 {
     display: block;
   }
 
+  /* Hide menu by default */
   .nav-items {
     display: none;
     flex-direction: column;
     gap: 12px;
-    margin-top: 12px;
+    margin-top: 16px; /* 👈 appears below header */
   }
 
   .nav-items.show {

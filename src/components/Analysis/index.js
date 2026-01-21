@@ -124,27 +124,27 @@ const Analysis = () => {
       <h1 className="analysis-title">Analysis</h1>
 
       <div className="analysis-card">
-        <h1 className="analysis-card-title">Commits Per Quarter</h1>
-        <LineChart width={800} height={300} data={quarterData}>
+        <LineChart width={312} height={253} data={quarterData}>
           <XAxis dataKey="quarter" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line dataKey="commits" stroke="#3b82f6" />
+          <Line dataKey="commits" stroke="#3B82F6" />
         </LineChart>
+        <p className="analysis-card-title">Commits Per Quarter</p>
       </div>
 
       <div className="analysis-row">
         <div className="analysis-card analysis-col">
-          <h1 className="analysis-card-title">Language Per Repos</h1>
-          <PieChart width={300} height={260}>
+          <h1 className="chart-title">Repos Per Language</h1>
+          <PieChart width={174} height={174}>
             <Pie
               data={languageRepos}
               dataKey="value"
               cx="50%"
               cy="50%"
-              innerRadius={60}
-              outerRadius={100}
+              innerRadius={30}
+              outerRadius={50}
             >
               {languageRepos.map((item, idx) => (
                 <Cell key={item.name} fill={COLORS[idx % COLORS.length]} />
@@ -155,8 +155,8 @@ const Analysis = () => {
         </div>
 
         <div className="analysis-card analysis-col">
-          <h1 className="analysis-card-title">Language Per Commits</h1>
-          <PieChart width={300} height={260}>
+          <h1 className="chart-title">Language Per Commits</h1>
+          <PieChart width={174} height={174}>
             <Pie
               data={languageCommits}
               dataKey="value"
@@ -175,8 +175,8 @@ const Analysis = () => {
       </div>
 
       <div className="analysis-card">
-        <h1 className="analysis-card-title">Commits Per Repo</h1>
-        <PieChart width={350} height={300}>
+        <h1 className="chart-title">Commits Per Repo</h1>
+        <PieChart width={174} height={174}>
           <Pie
             data={commitsPerRepo}
             dataKey="value"
