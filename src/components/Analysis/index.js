@@ -9,6 +9,7 @@ import {
   PieChart,
   Pie,
   Cell,
+  ResponsiveContainer,
 } from 'recharts'
 
 import GITHUB_API_KEY from '../../utils/config'
@@ -54,21 +55,14 @@ const Analysis = () => {
   }, [username])
 
   const isNoAnalysisData = data => {
-    const {
-      quarterCommitCount,
-      langRepoCount,
-      langCommitCount,
-      repoCommitCount,
-    } = data
-
-    const sumValues = obj =>
+    const sum = obj =>
       Object.values(obj || {}).reduce((acc, val) => acc + val, 0)
 
     return (
-      sumValues(quarterCommitCount) === 0 &&
-      sumValues(langRepoCount) === 0 &&
-      sumValues(langCommitCount) === 0 &&
-      sumValues(repoCommitCount) === 0
+      sum(data.quarterCommitCount) === 0 &&
+      sum(data.langRepoCount) === 0 &&
+      sum(data.langCommitCount) === 0 &&
+      sum(data.repoCommitCount) === 0
     )
   }
 
@@ -123,74 +117,96 @@ const Analysis = () => {
     <div className="analysis-container">
       <h1 className="analysis-title">Analysis</h1>
 
+      {/* Commits per quarter */}
       <div className="analysis-card">
-        <LineChart width={312} height={253} data={quarterData}>
-          <XAxis dataKey="quarter" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line dataKey="commits" stroke="#3B82F6" />
-        </LineChart>
-        <p className="analysis-card-title">Commits Per Quarter</p>
+        <p className="analysis-card-heading">Commits Per Quarter</p>
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={quarterData}>
+            <XAxis dataKey="quarter" />
+            <YAxis />
+            <Tooltip />
+            <Line type="monotone" dataKey="commits" stroke="#3b82f6" />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
 
+      {/* Two charts row */}
       <div className="analysis-row">
         <div className="analysis-card analysis-col">
-          <h1 className="chart-title">Repos Per Language</h1>
-          <PieChart width={174} height={174}>
-            <Pie
-              data={languageRepos}
-              dataKey="value"
-              cx="50%"
-              cy="50%"
-              innerRadius={30}
-              outerRadius={50}
-            >
-              {languageRepos.map((item, idx) => (
-                <Cell key={item.name} fill={COLORS[idx % COLORS.length]} />
-              ))}
-            </Pie>
-            <Legend layout="vertical" align="right" verticalAlign="middle" />
-          </PieChart>
+          <p className="analysis-card-heading">Language Per Repos</p>
+          <ResponsiveContainer width="100%" height={260}>
+            <PieChart>
+              <Pie
+                data={languageRepos}
+                dataKey="value"
+                innerRadius={60}
+                outerRadius={100}
+              >
+                {languageRepos.map((item, index) => (
+                  <Cell key={item.name} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
 
         <div className="analysis-card analysis-col">
-          <h1 className="chart-title">Language Per Commits</h1>
-          <PieChart width={174} height={174}>
-            <Pie
-              data={languageCommits}
-              dataKey="value"
-              cx="50%"
-              cy="50%"
-              innerRadius={60}
-              outerRadius={100}
-            >
-              {languageCommits.map((item, idx) => (
-                <Cell key={item.name} fill={COLORS[idx % COLORS.length]} />
-              ))}
-            </Pie>
-            <Legend layout="vertical" align="right" verticalAlign="middle" />
-          </PieChart>
+          <p className="analysis-card-heading">Language Per Commits</p>
+          <ResponsiveContainer width="100%" height={260}>
+            <PieChart>
+              <Pie
+                data={languageCommits}
+                dataKey="value"
+                innerRadius={60}
+                outerRadius={100}
+              >
+                {languageCommits.map((item, index) => (
+                  <Cell key={item.name} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
       </div>
 
+      {/* Commits per repo */}
       <div className="analysis-card">
-        <h1 className="chart-title">Commits Per Repo</h1>
-        <PieChart width={174} height={174}>
-          <Pie
-            data={commitsPerRepo}
-            dataKey="value"
-            cx="50%"
-            cy="50%"
-            innerRadius={60}
-            outerRadius={120}
-          >
-            {commitsPerRepo.map((item, idx) => (
-              <Cell key={item.name} fill={COLORS[idx % COLORS.length]} />
+        <h1 className="chart-title">Commits Per Repo (Top 10)</h1>
+
+        <div className="repo-chart-wrapper">
+          <PieChart width={260} height={260}>
+            <Pie
+              data={commitsPerRepo}
+              dataKey="value"
+              cx="50%"
+              cy="50%"
+              innerRadius={70}
+              outerRadius={110}
+            >
+              {commitsPerRepo.map(item => (
+                <Cell
+                  key={item.name}
+                  fill={COLORS[item.name.length % COLORS.length]}
+                />
+              ))}
+            </Pie>
+          </PieChart>
+
+          {/* Custom legend BELOW chart */}
+          <ul className="repo-legend">
+            {commitsPerRepo.map((item, index) => (
+              <li key={item.name}>
+                <span
+                  className="legend-dot"
+                  style={{backgroundColor: COLORS[index % COLORS.length]}}
+                />
+                {item.name}
+              </li>
             ))}
-          </Pie>
-          <Legend />
-        </PieChart>
+          </ul>
+        </div>
       </div>
     </div>
   )
