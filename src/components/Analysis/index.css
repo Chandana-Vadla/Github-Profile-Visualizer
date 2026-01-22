@@ -47,8 +47,12 @@
 }
 
 .no-analysis-text {
-  font-size: 22px;
+  font-family: 'HK Grotesk';
   font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0%;
+  color: #f8fafc;
 }
 
 /* ---------- Mobile ---------- */

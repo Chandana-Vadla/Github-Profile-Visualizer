@@ -31,7 +31,7 @@
 .repo-title {
   color: #3b82f6;
   margin-bottom: 8px;
-  font-size: 20px;
+  font-size: 10px;
 }
 
 .repo-description {
@@ -80,14 +80,23 @@
   font-size: 14px;
 }
 
+.no-repos-container {
+  min-height: calc(100vh - 64px); /* header height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center; /* horizontal center */
+  text-align: center;
+}
+
 .no-username-container {
   text-align: center;
   padding: 24px;
 }
 
 .empty-img {
-  width: 200px;
-  margin-bottom: 16px;
+  width: 296px;
+  height: 220px;
 }
 
 @media (min-width: 768px) {
@@ -99,4 +108,13 @@
   .repo-item {
     padding: 24px;
   }
+}
+
+.no-repos-message {
+  font-family: 'HK Grotesk';
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0%;
+  color: #f8fafc;
 }

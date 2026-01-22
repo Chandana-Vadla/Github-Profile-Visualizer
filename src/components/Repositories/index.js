@@ -72,13 +72,13 @@ const Repositories = () => {
 
   if (repos.length === 0) {
     return (
-      <div className="no-username-container">
+      <div className="no-repos-container">
         <img
           src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766915191/no_repos_m3heul.png"
           alt="no repositories"
           className="empty-img"
         />
-        <p>No repositories found</p>
+        <p className="no-repos-message">No repositories found</p>
       </div>
     )
   }
@@ -91,7 +91,7 @@ const Repositories = () => {
         {repos.map(repo => (
           <li key={repo.id} className="repo-item">
             <Link to={`/repositories/${repo.name}`} className="repo-link">
-              <h2 className="repo-title">{repo.name}</h2>
+              <p className="repo-title">{repo.name}</p>
               <p className="repo-description">{repo.description}</p>
 
               <ul className="topics-list">

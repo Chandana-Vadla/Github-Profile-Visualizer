@@ -173,7 +173,7 @@ const Analysis = () => {
 
       {/* Commits per repo */}
       <div className="analysis-card">
-        <h1 className="chart-title">Commits Per Repo (Top 10)</h1>
+        <h1 className="analysis-card-heading">Commits Per Repo (Top 10)</h1>
 
         <div className="repo-chart-wrapper">
           <PieChart width={260} height={260}>

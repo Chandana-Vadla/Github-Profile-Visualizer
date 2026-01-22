@@ -1,15 +1,21 @@
+/* ===============================
+   HEADER WRAPPER
+================================ */
 header {
   background-color: #0f172a;
   padding: 16px;
 }
 
-/* Top row: logo + hamburger */
+/* ===============================
+   TOP ROW (TITLE + HAMBURGER)
+================================ */
 .header-top {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
+/* Title */
 .heading {
   text-decoration: none;
 }
@@ -18,46 +24,80 @@ header h1 {
   color: #ffffff;
   margin: 0;
   font-size: 18px;
+  font-weight: 600;
 }
 
-/* Hamburger button */
-.hamburger-btn {
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  cursor: pointer;
-  display: none;
-}
-
-/* NAV ITEMS – DESKTOP */
+/* ===============================
+   NAV COMMON STYLES
+================================ */
 .nav-items {
-  list-style-type: none;
-  display: flex;
-  gap: 24px;
-  padding-left: 0;
-  margin-top: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .nav-items li a {
   color: #ffffff;
   text-decoration: none;
+  font-size: 14px;
 }
 
-/* ---------- SMALL DEVICES ---------- */
+/* Active link (optional but good UX) */
+.nav-items li a.active {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+/* ===============================
+   DESKTOP NAV
+================================ */
+.desktop-nav {
+  display: flex;
+  gap: 24px;
+}
+
+/* ===============================
+   HAMBURGER BUTTON
+================================ */
+.hamburger-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: none; /* hidden on desktop */
+}
+
+/* ===============================
+   MOBILE NAV
+================================ */
+.mobile-nav {
+  display: none; /* 👈 CRITICAL: hidden by default */
+}
+
+/* ===============================
+   SMALL DEVICES
+================================ */
 @media (max-width: 767px) {
+  /* Hide desktop nav */
+  .desktop-nav {
+    display: none;
+  }
+
+  /* Show hamburger */
   .hamburger-btn {
     display: block;
   }
 
-  /* Hide menu by default */
-  .nav-items {
+  /* Mobile nav layout */
+  .mobile-nav {
     display: none;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 16px; /* 👈 appears below header */
+    gap: 16px;
+    margin-top: 16px;
   }
 
-  .nav-items.show {
+  /* When hamburger is clicked */
+  .mobile-nav.show {
     display: flex;
   }
 }

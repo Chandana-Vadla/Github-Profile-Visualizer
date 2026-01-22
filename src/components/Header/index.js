@@ -1,19 +1,53 @@
-import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {useState, useEffect} from 'react'
+import {Link, useLocation} from 'react-router-dom'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import './index.css'
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false)
+  const location = useLocation()
+
+  // ✅ Close menu on route change
+  useEffect(() => {
+    setShowMenu(false)
+  }, [location.pathname])
+
+  const isActive = path => location.pathname === path
 
   return (
     <header>
-      {/* TOP ROW */}
+      {/* TOP BAR */}
       <div className="header-top">
         <Link className="heading" to="/">
           <h1>GitHub Profile Visualizer</h1>
         </Link>
 
+        {/* Desktop nav */}
+        <ul className="nav-items desktop-nav">
+          <li>
+            <Link to="/" className={isActive('/') ? 'active' : ''}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/repositories"
+              className={isActive('/repositories') ? 'active' : ''}
+            >
+              Repositories
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/analysis"
+              className={isActive('/analysis') ? 'active' : ''}
+            >
+              Analysis
+            </Link>
+          </li>
+        </ul>
+
+        {/* Hamburger (mobile) */}
         <button
           type="button"
           className="hamburger-btn"
@@ -24,20 +58,26 @@ const Header = () => {
         </button>
       </div>
 
-      {/* NAV ITEMS – NEXT LINE */}
-      <ul className={`nav-items ${showMenu ? 'show' : ''}`}>
+      {/* Mobile nav */}
+      <ul className={`nav-items mobile-nav ${showMenu ? 'show' : ''}`}>
         <li>
-          <Link to="/" onClick={() => setShowMenu(false)}>
+          <Link to="/" className={isActive('/') ? 'active' : ''}>
             Home
           </Link>
         </li>
         <li>
-          <Link to="/repositories" onClick={() => setShowMenu(false)}>
+          <Link
+            to="/repositories"
+            className={isActive('/repositories') ? 'active' : ''}
+          >
             Repositories
           </Link>
         </li>
         <li>
-          <Link to="/analysis" onClick={() => setShowMenu(false)}>
+          <Link
+            to="/analysis"
+            className={isActive('/analysis') ? 'active' : ''}
+          >
             Analysis
           </Link>
         </li>
