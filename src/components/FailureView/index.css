@@ -14,7 +14,7 @@
 }
 
 .failure-text {
-  color: #cbd5e1;
+  color: #f8fafc;
   font-size: 16px;
 }
 
@@ -24,4 +24,26 @@
   background-color: #3b82f6;
   color: #ffffff;
   border-radius: 6px;
+}
+
+.failure-msg {
+  font-family: 'HK Grotesk';
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  color: #ffffff;
+}
+
+.retry-button {
+  color: #ffffff;
+  width: 82px;
+  height: 32px;
+  border-radius: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 0px;
+  padding-bottom: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: #3b82f6;
 }

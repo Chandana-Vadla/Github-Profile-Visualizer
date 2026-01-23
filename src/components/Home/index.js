@@ -21,6 +21,7 @@ const Home = ({onProfileLoaded}) => {
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
   const [profileData, setProfileData] = useState(null)
   const [showErrorMessage, setShowErrorMessage] = useState(false)
+  const isFailure = apiStatus === apiStatusConstants.failure
 
   const {setUsername} = useContext(GithubContext)
 
@@ -62,26 +63,28 @@ const Home = ({onProfileLoaded}) => {
     switch (apiStatus) {
       case apiStatusConstants.inProgress:
         return <LoaderView />
+      case apiStatusConstants.failure:
+        return <FailureView onRetry={fetchProfile} />
 
       case apiStatusConstants.success:
         return <Profile profileData={profileData} />
 
-      case apiStatusConstants.failure:
-        return <FailureView onRetry={fetchProfile} />
-
       default:
         return (
-          <img
-            src="https://ik.imagekit.io/chandy/Group%202.png?updatedAt=1757601787533"
-            alt="github profile visualizer home page"
-            className="home-image"
-          />
+          <>
+            <p className="home-page-title">Github Profile Visualizer</p>
+            <img
+              src="https://ik.imagekit.io/chandy/Group%202.png?updatedAt=1757601787533"
+              alt="github profile visualizer home page"
+              className="home-image"
+            />
+          </>
         )
     }
   }
 
   return (
-    <div className="home-container">
+    <div className={`home-container ${isFailure ? 'no-center' : ''}`}>
       <div className="search-container">
         <label htmlFor="searchInput" className="visually-hidden">
           GitHub Username

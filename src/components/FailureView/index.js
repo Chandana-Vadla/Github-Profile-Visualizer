@@ -10,8 +10,8 @@ const FailureView = props => {
         alt="failure view"
         className="failure-image"
       />
-      <p>Something went wrong. Please try again</p>
-      <button type="button" onClick={onRetry}>
+      <p className="failure-msg">Something went wrong. Please try again</p>
+      <button className="retry-button" type="button" onClick={onRetry}>
         Try Again
       </button>
     </div>
