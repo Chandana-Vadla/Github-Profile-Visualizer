@@ -75,7 +75,7 @@ const Home = ({onProfileLoaded}) => {
             <p className="home-page-title">Github Profile Visualizer</p>
             <img
               src="https://ik.imagekit.io/chandy/Group%202.png?updatedAt=1757601787533"
-              alt="github profile visualizer home page"
+              alt="gitHub profile visualizer home page"
               className="home-image"
             />
           </>
@@ -107,6 +107,7 @@ const Home = ({onProfileLoaded}) => {
           data-testid="searchButton"
           onClick={fetchProfile}
           aria-label="Search"
+          className="search-btn"
         >
           <HiOutlineSearch />
         </button>

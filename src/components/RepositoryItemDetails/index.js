@@ -1,6 +1,8 @@
 import {useEffect, useState, useContext} from 'react'
 import {Link, useParams} from 'react-router-dom'
 import {PieChart, Pie, Cell, Legend} from 'recharts'
+import {AiFillStar} from 'react-icons/ai'
+import {GoRepoForked} from 'react-icons/go'
 
 import GithubContext from '../../context/GithubContext'
 import LoaderView from '../LoaderView'
@@ -71,25 +73,31 @@ const RepositoryItemDetails = () => {
             ))}
         </div>
 
-        <div className="repo-stats-icons">
-          <span>⭐ {stargazersCount}</span>
-          <span>🍴 {forksCount}</span>
-          <span>🐞 {openIssuesCount}</span>
+        <div className="repo-stats">
+          <div className="stat">
+            <AiFillStar className="star-icon" />
+            <span>{stargazersCount}</span>
+          </div>
+
+          <div className="stat">
+            <GoRepoForked className="fork-icon" />
+            <span>{forksCount}</span>
+          </div>
         </div>
 
         <div className="stats-row">
           <div className="repo-stats-box">
-            <p className="box-title">Commits Count</p>
-            <h3>{totalCommits}</h3>
+            <p className="box-title">Commits Counts</p>
+            <h3 className="box-value">{totalCommits}</h3>
           </div>
 
           <div className="repo-stats-box">
-            <h2 className="box-title">Issues Count</h2>
-            <h3>{openIssuesCount}</h3>
+            <p className="box-title">Issues Counts</p>
+            <h3 className="box-value">{openIssuesCount}</h3>
           </div>
         </div>
 
-        <h2 className="section-title">Contributors :</h2>
+        <h1 className="section-title">Contributors :</h1>
         <p className="members">{contributors.length} Members</p>
 
         <div className="contributors-row">
@@ -97,7 +105,7 @@ const RepositoryItemDetails = () => {
             <img
               key={c.id}
               src={c.avatar_url}
-              alt="contributor"
+              alt="contributor profile"
               className="avatar"
             />
           ))}
@@ -107,7 +115,7 @@ const RepositoryItemDetails = () => {
         </div>
 
         <div className="languages-section">
-          <h2 className="section-title">Languages :</h2>
+          <h1 className="section-title">Languages :</h1>
 
           <div className="chart-row">
             <PieChart width={260} height={260}>
@@ -130,7 +138,7 @@ const RepositoryItemDetails = () => {
 
             <ul className="language-list">
               {lanuages.map(lang => (
-                <li key={lang.name}>
+                <li key={lang.name} className="lang-item">
                   <span
                     className="lang-color-dot"
                     style={{
@@ -138,7 +146,7 @@ const RepositoryItemDetails = () => {
                         COLORS[lanuages.indexOf(lang) % COLORS.length],
                     }}
                   />
-                  {lang.name}
+                  <p> {lang.name}</p>
                 </li>
               ))}
             </ul>
