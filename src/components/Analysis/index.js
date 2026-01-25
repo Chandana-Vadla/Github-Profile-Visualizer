@@ -11,6 +11,7 @@ import {
   Cell,
   ResponsiveContainer,
 } from 'recharts'
+import {Link, useParams} from 'react-router-dom'
 
 import GITHUB_API_KEY from '../../utils/config'
 import GithubContext from '../../context/GithubContext'
@@ -63,6 +64,26 @@ const Analysis = () => {
       sum(data.langRepoCount) === 0 &&
       sum(data.langCommitCount) === 0 &&
       sum(data.repoCommitCount) === 0
+    )
+  }
+
+  if (username === '') {
+    return (
+      <div className="no-username-container">
+        <img
+          src="https://res.cloudinary.com/dgsdoqhph/image/upload/v1766917027/box_rix5ib.png"
+          alt="no analysis"
+          className="empty-img"
+        />
+        <p>No Data Found</p>
+        <p>
+          GitHub Username is empty, please provide a valid username for analysis
+        </p>
+
+        <Link to="/">
+          <button type="button">Go to Home</button>
+        </Link>
+      </div>
     )
   }
 
@@ -133,7 +154,7 @@ const Analysis = () => {
       {/* Two charts row */}
       <div className="analysis-row">
         <div className="analysis-card analysis-col">
-          <p className="analysis-card-heading">Language Per Repos</p>
+          <h1 className="analysis-card-heading">Language Per Repos</h1>
           <ResponsiveContainer width="100%" height={260}>
             <PieChart>
               <Pie
@@ -152,7 +173,7 @@ const Analysis = () => {
         </div>
 
         <div className="analysis-card analysis-col">
-          <p className="analysis-card-heading">Language Per Commits</p>
+          <h1 className="analysis-card-heading">Language Per Commits</h1>
           <ResponsiveContainer width="100%" height={260}>
             <PieChart>
               <Pie

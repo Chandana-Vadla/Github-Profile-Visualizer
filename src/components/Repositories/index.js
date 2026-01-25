@@ -39,7 +39,6 @@ const Repositories = () => {
     if (username !== '') {
       fetchRepos()
     }
-    // eslint-disable-next-line
   }, [username])
 
   if (username === '') {
@@ -78,7 +77,7 @@ const Repositories = () => {
           alt="no repositories"
           className="empty-img"
         />
-        <p className="no-repos-message">No repositories found</p>
+        <p className="no-repos-message">No Repositories Found</p>
       </div>
     )
   }

@@ -97,3 +97,13 @@
   border-radius: 2px;
   margin-right: 8px;
 }
+
+.no-username-container {
+  text-align: center;
+  padding: 24px;
+}
+
+.empty-img {
+  width: 296px;
+  height: 220px;
+}
