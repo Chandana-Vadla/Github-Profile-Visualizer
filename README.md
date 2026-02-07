@@ -40,31 +40,26 @@ Top repositories by commits
 
 
 
-🛠️ Technologies Used
 
+🛠 Tech Stack
 
-React JS
-
-
-React Router
-
-
-Context API
-
+React JS (Functional Components, Hooks)
 
 JavaScript (ES6+)
 
+React Router DOM (Client-side Routing)
 
-CSS3
+Context API (Global State Management)
 
+REST APIs (GitHub Profile & Repository APIs)
 
-Recharts (for data visualization)
+Recharts (Data Visualization – Line & Pie Charts)
 
+CSS3 (Flexbox, Media Queries, Responsive Design)
 
 React Icons
 
-
-REST APIs
+Git & GitHub
 
 
 
