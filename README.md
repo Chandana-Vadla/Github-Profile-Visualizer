@@ -78,26 +78,12 @@ Responsive layouts for all screen sizes
 
 
 🧠 Key Concepts Implemented
-
-
 Component-based architecture
-
-
 API integration with async/await
-
-
 Conditional rendering
-
-
 Route-based navigation
-
-
 State management using Context API
-
-
 Loader and failure UI states
-
-
 Responsive UI using CSS Flexbox and Media Queries
 
 
