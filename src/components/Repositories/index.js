@@ -49,13 +49,15 @@ const Repositories = () => {
           alt="no repositories"
           className="empty-img"
         />
-        <p>No Data Found</p>
-        <p>
+        <p className="message1">No Data Found</p>
+        <p className="message2">
           GitHub username is empty, please provide a valid username for
           Repositories
         </p>
         <Link to="/">
-          <button type="button">Go to Home</button>
+          <button className="gotohome-button" type="button">
+            Go to Home
+          </button>
         </Link>
       </div>
     )

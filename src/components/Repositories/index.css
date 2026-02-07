@@ -84,8 +84,8 @@
   min-height: calc(100vh - 64px); /* header height */
   display: flex;
   flex-direction: column;
-  justify-content: center; /* vertical center */
-  align-items: center; /* horizontal center */
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
@@ -95,8 +95,39 @@
 }
 
 .empty-img {
-  width: 296px;
-  height: 220px;
+  width: 206px;
+  height: 226px;
+}
+
+.message1 {
+  color: #f8fafc;
+  font-family: 'HK Grotesk';
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0%;
+}
+
+.message2 {
+  color: #f8fafc;
+  font-family: 'HK Grotesk';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.gotohome-button {
+  background-color: #ffffff;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  color: #414038;
+  font-family: 'HK Grotesk';
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0%;
 }
 
 @media (min-width: 768px) {

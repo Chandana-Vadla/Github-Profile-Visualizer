@@ -7,7 +7,7 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false)
   const location = useLocation()
 
-  // ✅ Close menu on route change
+  // Close menu on route change
   useEffect(() => {
     setShowMenu(false)
   }, [location.pathname])

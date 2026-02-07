@@ -1,6 +1,6 @@
 import {useEffect, useState, useContext} from 'react'
-import {Link, useParams} from 'react-router-dom'
-import {PieChart, Pie, Cell, Legend} from 'recharts'
+import {useParams} from 'react-router-dom'
+import {PieChart, Pie, Cell} from 'recharts'
 import {AiFillStar} from 'react-icons/ai'
 import {GoRepoForked} from 'react-icons/go'
 

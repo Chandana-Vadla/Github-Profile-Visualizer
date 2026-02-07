@@ -26,7 +26,6 @@ const App = () => {
 
   return (
     <div className={`app-container ${hideHeader ? 'hide-header-mobile' : ''}`}>
-      {/* ✅ Header is ALWAYS rendered */}
       <Header />
 
       <Switch>

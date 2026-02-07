@@ -11,7 +11,7 @@ import {
   Cell,
   ResponsiveContainer,
 } from 'recharts'
-import {Link, useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import GITHUB_API_KEY from '../../utils/config'
 import GithubContext from '../../context/GithubContext'
@@ -75,13 +75,15 @@ const Analysis = () => {
           alt="no analysis"
           className="empty-img"
         />
-        <p>No Data Found</p>
-        <p>
+        <p className="message1">No Data Found</p>
+        <p className="message2">
           GitHub Username is empty, please provide a valid username for analysis
         </p>
 
         <Link to="/">
-          <button type="button">Go to Home</button>
+          <button className="gotohome-button" type="button">
+            Go to Home
+          </button>
         </Link>
       </div>
     )

@@ -134,7 +134,6 @@
   margin-right: 6px;
 }
 
-/* 📱 mobile layout adjustments */
 @media (max-width: 768px) {
   .stats-row {
     flex-direction: column;
@@ -159,13 +158,11 @@
   color: #cbd5e1;
 }
 
-/* GitHub yellow star */
 .star-icon {
   color: #facc15;
   font-size: 18px;
 }
 
-/* GitHub fork icon */
 .fork-icon {
   color: #94a3b8;
   font-size: 18px;

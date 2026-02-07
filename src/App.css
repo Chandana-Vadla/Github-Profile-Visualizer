@@ -21,14 +21,12 @@ body {
   background-color: #0f172a;
 }
 
-/* Mobile: hide header when class present */
 @media (max-width: 767px) {
   .hide-header-mobile header {
     display: none;
   }
 }
 
-/* Desktop: header always visible */
 @media (min-width: 768px) {
   header {
     display: block;
