@@ -1,7 +1,7 @@
-🚀 GitHub Profile Visualizer
+### GitHub Profile Visualizer
 GitHub Profile Visualizer is a responsive web application that allows users to search for any GitHub username and view detailed insights about the user’s profile, repositories, and contribution analytics using interactive charts.
 
-🔍 Features
+### Features:
 
 
 🔎 Search GitHub users by username
@@ -19,16 +19,15 @@ GitHub Profile Visualizer is a responsive web application that allows users to s
 📊 Visualize contribution data using charts
 
 
-Commits per quarter
+  Commits per quarter
+
+  Repositories per language
 
 
-Repositories per language
+  Commits per language
 
 
-Commits per language
-
-
-Top repositories by commits
+  Top repositories by commits
 
 
 
@@ -41,7 +40,8 @@ Top repositories by commits
 
 
 
-🛠 Tech Stack
+
+### Tech Stack:
 
 React JS (Functional Components, Hooks)
 
@@ -64,6 +64,7 @@ Git & GitHub
 
 
 📊 Data Visualization
+
 The application uses interactive charts to display GitHub analytics:
 
 
@@ -77,7 +78,7 @@ Responsive layouts for all screen sizes
 
 
 
-🧠 Key Concepts Implemented
+### Key Concepts Implemented:
 
 
 Component-based architecture
@@ -102,48 +103,67 @@ Responsive UI using CSS Flexbox and Media Queries
 
 
 
-⚙️ Installation & Setup
-# Clone the repository
+### Installation & Setup
+Clone the repository
 git clone https://github.com/your-username/GitHub-Profile-Visualizer.git
 
-# Navigate to project folder
+Navigate to project folder
 cd GitHub-Profile-Visualizer
 
-# Install dependencies
+Install dependencies
 npm install
 
-# Start the development server
+Start the development server
 npm start
 
 
-📂 Folder Structure (Overview)
-src/
-├── components/
-│   ├── Analysis
-│   ├── Counter
-│   ├── FailureView
-│   ├── Header
-│   ├── Home
-│   ├── LoaderView
-│   ├── NoDataView
-|   ├── NotFound
-|   ├── Profile
-|   ├── Repositories
-|   └── RepositoryItemDetails
+## 📁 Folder Structure
 
-├── context/
-|   ├── GithubContext.js
-│   └── GithubProvider.js
-
-├── utils/
-│   └── config.js
-└── App.js
+```bash
+githubProfileVisualizer/
+├── public/
+│   └── index.html
+│
+├── src/
+│   ├── components/
+│   │   ├── Analysis/
+│   │   ├── Counter/
+│   │   ├── FailureView/
+│   │   ├── Header/
+│   │   ├── Home/
+│   │   ├── LoaderView/
+│   │   ├── NoDataView/
+│   │   ├── NotFound/
+│   │   ├── Profile/
+│   │   ├── Repositories/
+│   │   └── RepositoryItemDetails/
+│   │
+│   ├── context/
+│   │   ├── GithubContext.js
+│   │   └── GithubProvider.js
+│   │
+│   ├── utils/
+│   │   └── config.js
+│   │
+│   ├── App.js
+│   ├── index.js
+│   └── App.css
+│
+├── .gitignore
+├── package.json
+└── README.md
+```
 
 
 🌐 Live Demo
+
 👉 Live URL: https://gitprflvisual.ccbp.tech/
 
 
-👩‍💻 Author
+
+
+### Author
+
 Chandana Vadla
+
 Frontend Developer | React JS
