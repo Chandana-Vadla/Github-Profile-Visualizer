@@ -19,15 +19,13 @@ GitHub Profile Visualizer is a responsive web application that allows users to s
 📊 Visualize contribution data using charts
 
 
-    Commits per quarter
+Commits per quarter
 
-    Repositories per language
+Repositories per language
 
+Commits per language
 
-    Commits per language
-
-
-    Top repositories by commits
+Top repositories by commits
 
 
 
