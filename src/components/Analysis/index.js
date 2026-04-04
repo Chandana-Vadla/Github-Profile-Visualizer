@@ -217,7 +217,6 @@ const Analysis = () => {
             </Pie>
           </PieChart>
 
-          {/* Custom legend BELOW chart */}
           <ul className="repo-legend">
             {commitsPerRepo.map((item, index) => (
               <li key={item.name}>

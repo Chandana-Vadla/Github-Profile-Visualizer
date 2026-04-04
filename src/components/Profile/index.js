@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 
 import {RiBuildingLine} from 'react-icons/ri'
 import {IoMdLink} from 'react-icons/io'

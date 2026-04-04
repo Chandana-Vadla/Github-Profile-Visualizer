@@ -42,7 +42,7 @@ header h1 {
   font-size: 14px;
 }
 
-/* Active link (optional but good UX) */
+/* Active link */
 .nav-items li a.active {
   color: #3b82f6;
   font-weight: 600;
